@@ -1,66 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    ========================================
-    RSS FEED FOR YOUR BLOG
-    ========================================
-
-    This file is what MailerLite reads to automatically send emails
-    when you publish new posts.
-
-    HOW TO UPDATE THIS FILE:
-    When you add a new blog post, copy the <item> template below
-    and fill in your post's details. Put new posts at the TOP
-    (right after the opening <channel> section).
-
-    IMPORTANT: The link URLs must be your actual GitHub Pages URL!
--->
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <!--
-            CHANNEL INFO: Basic information about your blog
-            CUSTOMIZE: Change these to match your blog!
-        -->
         <title>My Blog</title>
         <description>Thoughts, stories, and ideas worth sharing</description>
         <link>https://linden-hub.github.io/Blog</link>
         <language>en-us</language>
-
+        <lastBuildDate>Mon, 02 Feb 2026 14:40:35 GMT</lastBuildDate>
         <atom:link href="https://linden-hub.github.io/Blog/rss.xml" rel="self" type="application/rss+xml"/>
-
-        <!--
-            ========================================
-            BLOG POSTS GO BELOW
-            ========================================
-            Newest posts should be at the TOP.
-
-            TEMPLATE FOR NEW POSTS (copy this for each new post):
-
-            <item>
-                <title>Your Post Title Here</title>
-                <link>https://linden-hub.github.io/Blog/post.html?slug=your-post-slug</link>
-                <guid>https://linden-hub.github.io/Blog/post.html?slug=your-post-slug</guid>
-                <pubDate>Mon, 15 Jan 2024 12:00:00 GMT</pubDate>
-                <description><![CDATA[
-                    Your post description or excerpt here.
-                    This is what appears in the email preview.
-                ]]></description>
-            </item>
-
-            DATE FORMAT: Day, DD Mon YYYY HH:MM:SS GMT
-            Examples:
-            - Mon, 15 Jan 2024 12:00:00 GMT
-            - Tue, 20 Feb 2024 09:30:00 GMT
-            - Wed, 05 Mar 2024 18:00:00 GMT
-        -->
 
         <item>
             <title>My First Post</title>
             <link>https://linden-hub.github.io/Blog/post.html?slug=my-first-post</link>
-            <guid>https://linden-hub.github.io/Blog/post.html?slug=my-first-post</guid>
-            <pubDate>Sat, 01 Feb 2025 12:00:00 GMT</pubDate>
-            <description><![CDATA[
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a placeholder post you can edit.
-            ]]></description>
+            <guid isPermaLink="true">https://linden-hub.github.io/Blog/post.html?slug=my-first-post</guid>
+            <pubDate>Sat, 01 Feb 2025 00:00:00 GMT</pubDate>
+            <description>Testing post for functionality</description>
+            <content:encoded><![CDATA[
+<h1>post 1 (testing)</h1>
+<p>Hello, Welcome to my blog! This is just a testing post to make sure everything is working.</p>
+<h2>What to expect from me here</h2>
+<p>Basically, I am going to be writing about anything that I want in this blog. Random thoughts, projects I'm working on, things that I've been doing, etc.</p>
+<h2>Ignore the rest of this post please</h2>
+<blockquote>This is a blockquote. Bet you couldn't have guessed that!</blockquote>
+<pre><code>function example() {
+    console.log("I don't know how to code!");
+}</code></pre>
+<h2>Adding Images</h2>
+<p>To add an image, put it in the <code>images/</code> folder and use:</p>
+<img src="https://linden-hub.github.io/Blog/images/your-image.jpg" alt="Description of image" style="max-width: 100%; height: auto;" />
+<h2>Embedding YouTube Videos</h2>
+<p>Just paste a YouTube URL on its own line:</p>
+
+<div style="margin: 20px 0; text-align: center;">
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="display: inline-block; text-decoration: none;">
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="YouTube Video" style="max-width: 100%; height: auto; border-radius: 8px;" />
+        <p style="margin-top: 8px; color: #818cf8;">▶ Watch on YouTube</p>
+    </a>
+</div>
+<hr />
+
+<p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
+    <a href="https://linden-hub.github.io/Blog/post.html?slug=my-first-post" style="color: #818cf8;">Read this post on the blog →</a>
+</p>
+            ]]></content:encoded>
         </item>
 
     </channel>

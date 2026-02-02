@@ -103,24 +103,23 @@ Open `posts/posts.json` and add a new entry:
 - `date`: Format as `YYYY-MM-DD`
 - `description`: Short summary for the homepage
 
-### Step 3: Add to RSS Feed (for newsletter)
+### Step 3: Generate the RSS Feed (for newsletter)
 
-Open `rss.xml` and add a new `<item>` block at the top of the items list:
+Run the RSS generator script to automatically create the feed with full post content:
 
-```xml
-<item>
-    <title>My New Post Title</title>
-    <link>https://linden-hub.github.io/Blog/post.html?slug=my-new-post</link>
-    <guid>https://linden-hub.github.io/Blog/post.html?slug=my-new-post</guid>
-    <pubDate>Thu, 01 Feb 2024 12:00:00 GMT</pubDate>
-    <description><![CDATA[
-        Your post description here. This text appears in the email.
-    ]]></description>
-</item>
+```bash
+node scripts/generate-rss.js
 ```
 
-**Date format:** `Day, DD Mon YYYY HH:MM:SS GMT`
-- Examples: `Mon, 15 Jan 2024 12:00:00 GMT`, `Fri, 22 Mar 2024 09:00:00 GMT`
+This script:
+- Reads all posts from `posts.json`
+- Converts each Markdown file to HTML
+- Includes the **full post content** so subscribers can read in their email
+- Converts YouTube embeds to clickable thumbnail links (emails can't show iframes)
+- Makes all image URLs absolute
+- Outputs a properly formatted `rss.xml`
+
+**Run this script every time you add or update a blog post!**
 
 ---
 
@@ -130,13 +129,13 @@ Open `rss.xml` and add a new `<item>` block at the top of the items list:
 
 1. Edit the `.md` file in `posts/`
 2. If changing the title or description, also update `posts/posts.json`
-3. If you want the email to reflect changes, also update `rss.xml`
+3. Run `node scripts/generate-rss.js` to regenerate the RSS feed
 
 ### Deleting a Post
 
 1. Delete the `.md` file from `posts/`
 2. Remove the entry from `posts/posts.json`
-3. Optionally remove from `rss.xml` (not required)
+3. Run `node scripts/generate-rss.js` to regenerate the RSS feed
 
 ---
 
@@ -319,11 +318,13 @@ git push -u origin main
 
 ### Step 4: Update Your URLs
 
-After deploying, update the URLs in `rss.xml` to match your actual site:
+After deploying, update the site URL in the RSS generator:
 
-1. Open `rss.xml`
-2. Replace all instances of `https://linden-hub.github.io/Blog` with your actual URL
-3. Commit and push the changes
+1. Open `scripts/generate-rss.js`
+2. Find the `CONFIG` section at the top
+3. Change `siteUrl` to your actual URL (e.g., `https://YOUR-USERNAME.github.io/YOUR-REPO`)
+4. Run `node scripts/generate-rss.js` to regenerate the feed
+5. Commit and push the changes
 
 Your blog will be live at: `https://YOUR-USERNAME.github.io/YOUR-REPO`
 
@@ -364,21 +365,20 @@ Add to `posts/posts.json`:
 }
 ```
 
-### 3. Update rss.xml
+### 3. Generate the RSS Feed
 
-Add new `<item>` at the top:
+Run the RSS generator to create the feed with full post content:
 
-```xml
-<item>
-    <title>My Awesome Post</title>
-    <link>https://linden-hub.github.io/Blog/post.html?slug=my-awesome-post</link>
-    <guid>https://linden-hub.github.io/Blog/post.html?slug=my-awesome-post</guid>
-    <pubDate>Thu, 01 Feb 2024 12:00:00 GMT</pubDate>
-    <description><![CDATA[
-        A brief description of what this post is about.
-        You can include <strong>HTML formatting</strong> here.
-    ]]></description>
-</item>
+```bash
+node scripts/generate-rss.js
+```
+
+You'll see output like:
+```
+✓ RSS feed generated: rss.xml
+  - 5 post(s) included
+  - Full content with HTML formatting
+  - YouTube videos converted to clickable thumbnails
 ```
 
 ### 4. Push to GitHub
@@ -402,7 +402,8 @@ MailerLite will detect the new RSS item and send an email to your subscribers (u
 1. In `index.html` and `post.html`, find and change:
    - `<title>My Blog</title>`
    - `<a href="index.html" class="logo">My Blog</a>`
-2. In `rss.xml`, change `<title>My Blog</title>`
+2. In `scripts/generate-rss.js`, update `siteTitle` in the CONFIG section
+3. Run `node scripts/generate-rss.js` to regenerate the RSS feed
 
 ### Change Colors
 
@@ -434,7 +435,7 @@ In `index.html` and `post.html`, find the `newsletter-section` and edit:
 Blog/
 ├── index.html              # Homepage
 ├── post.html               # Individual post template
-├── rss.xml                 # RSS feed (for newsletter automation)
+├── rss.xml                 # RSS feed (auto-generated, don't edit manually)
 ├── css/
 │   └── style.css           # All styling
 ├── js/
@@ -442,6 +443,8 @@ Blog/
 ├── posts/
 │   ├── posts.json          # List of posts
 │   └── *.md                # Your blog posts
+├── scripts/
+│   └── generate-rss.js     # RSS feed generator (run after adding posts)
 ├── images/                 # Your images
 ├── .nojekyll               # Tells GitHub not to use Jekyll
 └── README.md               # This file
@@ -452,7 +455,7 @@ Blog/
 1. **Homepage:** JavaScript reads `posts.json` and displays post cards
 2. **Post page:** JavaScript loads the markdown file and converts it to HTML
 3. **Newsletter:** Visitors sign up via the MailerLite form
-4. **RSS feed:** MailerLite reads this to detect new posts and send emails
+4. **RSS feed:** Generated by `scripts/generate-rss.js` with full post content; MailerLite reads this to send emails
 
 ---
 
@@ -497,16 +500,14 @@ Blog/
 
 1. Verify your RSS feed URL is correct in MailerLite
 2. Check that the RSS automation is active
-3. Make sure the `rss.xml` file has valid XML (no typos)
+3. Regenerate the RSS feed: `node scripts/generate-rss.js`
 4. MailerLite checks feeds periodically, so there may be a delay
 
 ### RSS feed errors
 
-1. Validate your XML at [validator.w3.org/feed](https://validator.w3.org/feed/)
-2. Common issues:
-   - Missing closing tags
-   - Special characters not escaped (use `&amp;` for &)
-   - Invalid date format
+1. Make sure you ran `node scripts/generate-rss.js` after adding posts
+2. Validate your XML at [validator.w3.org/feed](https://validator.w3.org/feed/)
+3. Check that all posts in `posts.json` have matching `.md` files in `posts/`
 
 ### Posts not showing
 

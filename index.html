@@ -119,15 +119,14 @@
                     <div class="ml-form-align-center">
                         <div class="ml-form-embedWrapper embedForm">
                             <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-                                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2081464/forms/178265248457820055/subscribe" data-code="" method="post" target="_blank">
+                                <form class="ml-block-form" id="newsletter-form-home">
                                     <div class="ml-form-formContent">
                                         <div class="ml-form-fieldRow ml-last-item">
                                             <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                                                <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Enter your email" autocomplete="email">
+                                                <input aria-label="email" aria-required="true" type="email" class="form-control" id="newsletter-email-home" name="fields[email]" placeholder="Enter your email" autocomplete="email" required>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="ml-submit" value="1">
                                     <div class="ml-form-embedSubmit">
                                         <button type="submit" class="primary">Subscribe</button>
                                         <button disabled="disabled" style="display: none;" type="button" class="loading">
@@ -135,7 +134,9 @@
                                             <span class="sr-only">Loading...</span>
                                         </button>
                                     </div>
-                                    <input type="hidden" name="anticsrf" value="true">
+                                    <div class="ml-form-errorBody" style="display: none;">
+                                        <p class="error-message" style="color: #ef4444; margin-top: 0.5rem;"></p>
+                                    </div>
                                 </form>
                             </div>
                             <div class="ml-form-successBody row-success" style="display: none">
@@ -148,15 +149,51 @@
                     </div>
                 </div>
                 <script>
-                    function ml_webform_success_36553031() {
-                        var $ = ml_jQuery || jQuery;
-                        $('.ml-subscribe-form-36553031 .row-success').show();
-                        $('.ml-subscribe-form-36553031 .row-form').hide();
-                    }
-                </script>
-                <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
-                <script>
-                    fetch("https://assets.mailerlite.com/jsonp/2081464/forms/178265248457820055/takel")
+                    (function() {
+                        const form = document.getElementById('newsletter-form-home');
+                        const emailInput = document.getElementById('newsletter-email-home');
+                        const container = document.getElementById('mlb2-36553031');
+                        const submitBtn = form.querySelector('button[type="submit"]');
+                        const loadingBtn = form.querySelector('button.loading');
+                        const errorBody = form.querySelector('.ml-form-errorBody');
+                        const errorMessage = form.querySelector('.error-message');
+
+                        form.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+
+                            const email = emailInput.value.trim();
+                            if (!email) return;
+
+                            // Show loading state
+                            submitBtn.style.display = 'none';
+                            loadingBtn.style.display = 'inline-flex';
+                            errorBody.style.display = 'none';
+
+                            try {
+                                const formData = new FormData();
+                                formData.append('fields[email]', email);
+                                formData.append('ml-submit', '1');
+                                formData.append('anticsrf', 'true');
+
+                                const response = await fetch('https://assets.mailerlite.com/jsonp/2081464/forms/178265248457820055/subscribe', {
+                                    method: 'POST',
+                                    body: formData,
+                                    mode: 'no-cors'
+                                });
+
+                                // With no-cors, we can't read the response, but the request goes through
+                                // Show success state
+                                container.querySelector('.row-form').style.display = 'none';
+                                container.querySelector('.row-success').style.display = 'block';
+                            } catch (error) {
+                                // Show error state
+                                submitBtn.style.display = 'inline-flex';
+                                loadingBtn.style.display = 'none';
+                                errorBody.style.display = 'block';
+                                errorMessage.textContent = 'Something went wrong. Please try again.';
+                            }
+                        });
+                    })();
                 </script>
 
                 <!-- RSS Feed link for those who prefer RSS readers -->
