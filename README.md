@@ -1,6 +1,14 @@
-# My Personal Blog
+# My Personal Blog + Newsletter
 
-A simple, clean blog website that works with GitHub Pages. No coding knowledge required to add and manage posts!
+A simple, clean blog website with email newsletter functionality that works with GitHub Pages. No coding knowledge required!
+
+**Features:**
+- Write blog posts in easy Markdown format
+- Embed YouTube videos automatically
+- Email newsletter signup with MailerLite (free)
+- Automatic emails when you publish new posts
+- RSS feed for subscribers who prefer RSS readers
+- Responsive design (works on mobile and desktop)
 
 ---
 
@@ -12,163 +20,107 @@ A simple, clean blog website that works with GitHub Pages. No coding knowledge r
 4. [How to Edit or Delete Posts](#how-to-edit-or-delete-posts)
 5. [How to Add Images](#how-to-add-images)
 6. [How to Embed YouTube Videos](#how-to-embed-youtube-videos)
-7. [Deploying to GitHub Pages](#deploying-to-github-pages)
-8. [Customizing Your Blog](#customizing-your-blog)
-9. [Project Structure](#project-structure)
-10. [Markdown Guide](#markdown-guide)
-11. [Troubleshooting](#troubleshooting)
+7. [Setting Up MailerLite Newsletter](#setting-up-mailerlite-newsletter)
+8. [Deploying to GitHub Pages](#deploying-to-github-pages)
+9. [Complete Workflow: Publishing a Post with Email](#complete-workflow-publishing-a-post-with-email)
+10. [Customizing Your Blog](#customizing-your-blog)
+11. [Project Structure](#project-structure)
+12. [Markdown Guide](#markdown-guide)
+13. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Quick Start
 
-If you just want to get your blog online quickly:
-
 1. Create a GitHub account at [github.com](https://github.com)
-2. Create a new repository named `yourusername.github.io`
-3. Upload all these files to that repository
-4. Your blog will be live at `https://yourusername.github.io`!
-
-Keep reading for detailed instructions.
+2. Create a repository and upload these files (see [Deploying to GitHub Pages](#deploying-to-github-pages))
+3. Set up MailerLite for newsletter functionality (see [Setting Up MailerLite](#setting-up-mailerlite-newsletter))
+4. Start writing blog posts!
 
 ---
 
 ## How to Run Locally
 
-To preview your blog on your computer before publishing, you need to run a local server. Here's why: browsers have security restrictions that prevent loading local files directly. A local server bypasses this.
+To preview your blog on your computer before publishing:
 
-### Option 1: Using Python (Recommended)
+### Using Python (Recommended for Mac)
 
 Python comes pre-installed on Mac. Open Terminal and run:
 
 ```bash
-# Navigate to your blog folder
 cd /path/to/your/Blog
-
-# Start the server
 python3 -m http.server 8000
 ```
 
-Then open your browser and go to: `http://localhost:8000`
+Then open your browser to: `http://localhost:8000`
 
-To stop the server, press `Ctrl + C` in Terminal.
+Press `Ctrl + C` to stop the server.
 
-### Option 2: Using VS Code
+### Using VS Code
 
 1. Install [VS Code](https://code.visualstudio.com/)
 2. Install the "Live Server" extension
 3. Open your Blog folder in VS Code
 4. Right-click `index.html` and select "Open with Live Server"
 
-### Option 3: Using Node.js
-
-If you have Node.js installed:
-
-```bash
-# Install serve globally (only need to do this once)
-npm install -g serve
-
-# Navigate to your blog folder and start
-cd /path/to/your/Blog
-serve
-```
-
 ---
 
 ## How to Add a New Blog Post
 
-Adding a new post is a 2-step process:
+Adding a new post involves 3 simple steps:
 
 ### Step 1: Create the Markdown File
 
 1. Go to the `posts/` folder
-2. Create a new file with a name like `my-new-post.md`
+2. Create a new file named like `my-new-post.md`
    - Use lowercase letters
    - Use hyphens instead of spaces
    - End with `.md`
 
-3. Write your post using Markdown (see [Markdown Guide](#markdown-guide) below)
+3. Write your post using Markdown (see [Markdown Guide](#markdown-guide))
 
-**Example filename:** `my-trip-to-paris.md`
+### Step 2: Add to posts.json
 
-### Step 2: Add the Post to posts.json
-
-1. Open `posts/posts.json`
-2. Add a new entry to the `"posts"` array
-
-Here's the structure:
+Open `posts/posts.json` and add a new entry:
 
 ```json
 {
     "posts": [
         {
-            "slug": "my-trip-to-paris",
-            "title": "My Amazing Trip to Paris",
-            "date": "2024-02-15",
-            "description": "Sharing photos and stories from my recent adventure in the City of Light."
-        }
+            "slug": "my-new-post",
+            "title": "My New Post Title",
+            "date": "2024-02-01",
+            "description": "A short description shown on the homepage."
+        },
+        ... (other posts)
     ]
 }
 ```
 
-**Important fields:**
+**Fields explained:**
 - `slug`: Must match your filename (without `.md`)
 - `title`: The title shown on your blog
-- `date`: Format as `YYYY-MM-DD` (year-month-day)
-- `description`: A short summary shown on the homepage
+- `date`: Format as `YYYY-MM-DD`
+- `description`: Short summary for the homepage
 
-### Complete Example
+### Step 3: Add to RSS Feed (for newsletter)
 
-Let's say you want to add a post about your favorite recipes.
+Open `rss.xml` and add a new `<item>` block at the top of the items list:
 
-**Step 1:** Create `posts/favorite-recipes.md`:
-
-```markdown
-# My Favorite Recipes
-
-Here are some recipes I love to make...
-
-## Chocolate Chip Cookies
-
-These are the best cookies ever!
-
-### Ingredients
-- 2 cups flour
-- 1 cup sugar
-- 1 cup chocolate chips
-
-### Instructions
-1. Mix dry ingredients
-2. Add wet ingredients
-3. Bake at 350°F for 12 minutes
-
-## Pasta Carbonara
-
-A classic Italian dish...
+```xml
+<item>
+    <title>My New Post Title</title>
+    <link>https://linden-hub.github.io/Blog/post.html?slug=my-new-post</link>
+    <guid>https://linden-hub.github.io/Blog/post.html?slug=my-new-post</guid>
+    <pubDate>Thu, 01 Feb 2024 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+        Your post description here. This text appears in the email.
+    ]]></description>
+</item>
 ```
 
-**Step 2:** Update `posts/posts.json`:
-
-```json
-{
-    "posts": [
-        {
-            "slug": "favorite-recipes",
-            "title": "My Favorite Recipes",
-            "date": "2024-02-20",
-            "description": "A collection of my go-to recipes including cookies and pasta carbonara."
-        },
-        {
-            "slug": "welcome-to-my-blog",
-            "title": "Welcome to My Blog!",
-            "date": "2024-01-15",
-            "description": "Hello and welcome! This is my first blog post."
-        }
-    ]
-}
-```
-
-**Note:** Posts are automatically sorted by date (newest first), so the order in the JSON file doesn't matter.
+**Date format:** `Day, DD Mon YYYY HH:MM:SS GMT`
+- Examples: `Mon, 15 Jan 2024 12:00:00 GMT`, `Fri, 22 Mar 2024 09:00:00 GMT`
 
 ---
 
@@ -176,141 +128,270 @@ A classic Italian dish...
 
 ### Editing a Post
 
-1. Open the `.md` file in the `posts/` folder
-2. Make your changes
-3. Save the file
-
-The changes will appear immediately (refresh your browser).
-
-To update the title, date, or description shown on the homepage, also edit `posts/posts.json`.
+1. Edit the `.md` file in `posts/`
+2. If changing the title or description, also update `posts/posts.json`
+3. If you want the email to reflect changes, also update `rss.xml`
 
 ### Deleting a Post
 
-1. Delete the `.md` file from the `posts/` folder
-2. Remove the corresponding entry from `posts/posts.json`
+1. Delete the `.md` file from `posts/`
+2. Remove the entry from `posts/posts.json`
+3. Optionally remove from `rss.xml` (not required)
 
 ---
 
 ## How to Add Images
 
-### Step 1: Add Images to the Images Folder
-
-1. Put your image files in the `images/` folder
-2. Use descriptive filenames: `paris-eiffel-tower.jpg` (not `IMG_1234.jpg`)
-
-### Step 2: Reference Images in Your Posts
-
-In your Markdown file, use this format:
+1. Put images in the `images/` folder
+2. Reference them in your Markdown:
 
 ```markdown
-![Description of image](images/your-image-name.jpg)
+![Description of image](images/my-photo.jpg)
 ```
 
-**Example:**
-
-```markdown
-Here's a photo from my trip:
-
-![The Eiffel Tower at sunset](images/paris-eiffel-tower.jpg)
-
-It was absolutely beautiful!
-```
-
-### Image Tips
-
-- **Supported formats:** JPG, PNG, GIF, WebP
-- **Optimize file size:** Large images slow down your site. Aim for under 500KB per image.
-- **Use descriptive alt text:** The text in brackets helps with accessibility and SEO
+**Tips:**
+- Use descriptive filenames: `paris-sunset.jpg` not `IMG_1234.jpg`
+- Keep images under 500KB for faster loading
+- Supported formats: JPG, PNG, GIF, WebP
 
 ---
 
 ## How to Embed YouTube Videos
 
-Adding YouTube videos is super easy! Just paste the YouTube URL on its own line.
-
-### Example
-
-In your Markdown file:
+Just paste a YouTube URL on its own line:
 
 ```markdown
-Check out this great video:
+Check out this video:
 
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
+https://www.youtube.com/watch?v=VIDEO_ID
 
-What do you think?
+Pretty cool, right?
 ```
 
-The URL will automatically become an embedded video player!
+The URL automatically becomes an embedded video player!
 
-### Supported URL Formats
+---
 
-All of these work:
-- `https://www.youtube.com/watch?v=VIDEO_ID`
-- `https://youtu.be/VIDEO_ID`
-- `https://www.youtube.com/embed/VIDEO_ID`
+## Setting Up MailerLite Newsletter
 
-### Important
+MailerLite is a free email service that will:
+- Collect email signups from your blog
+- Automatically send emails when you publish new posts
+- Manage your subscriber list
 
-- The URL must be on its own line (not mixed with other text)
-- Leave blank lines before and after the URL
+### Step 1: Create a MailerLite Account
+
+1. Go to [mailerlite.com](https://www.mailerlite.com/)
+2. Click "Sign Up Free"
+3. Enter your email and create a password
+4. Verify your email address
+5. Complete the account setup (they'll ask about your business/blog)
+
+**Free tier includes:**
+- Up to 1,000 subscribers
+- 12,000 emails per month
+- RSS-to-email automation
+
+### Step 2: Create a Signup Form
+
+1. In MailerLite, go to **Forms** → **Embedded forms**
+2. Click **Create embedded form**
+3. Choose a template (simple is best)
+4. Customize the form:
+   - Change the heading to "Subscribe to my newsletter"
+   - Keep just the email field (remove name if you want simplicity)
+   - Customize the button text (e.g., "Subscribe")
+   - Match colors to your blog (primary color: `#2563eb`)
+5. Click **Save and publish**
+
+### Step 3: Get the Embed Code
+
+1. After saving, click **Embed form**
+2. Select **HTML code**
+3. Copy the entire code snippet
+
+It will look something like this:
+```html
+<div class="ml-embedded" data-form="xxxxxx"></div>
+<script>
+(function(w,d,e,u,f,l,n){...})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', 'xxxxxx');
+</script>
+```
+
+### Step 4: Add the Form to Your Blog
+
+1. Open `index.html`
+2. Find the section that says `<!-- MAILERLITE FORM PLACEHOLDER -->`
+3. Replace the placeholder `<div id="mailerlite-form-placeholder">...</div>` with your MailerLite code
+4. Do the same in `post.html`
+
+**Example (in index.html and post.html):**
+
+Replace this:
+```html
+<div id="mailerlite-form-placeholder" class="form-placeholder">
+    <p><strong>Newsletter form will appear here</strong></p>
+    ...
+</div>
+```
+
+With your MailerLite code:
+```html
+<div class="ml-embedded" data-form="xxxxxx"></div>
+<script>
+(function(w,d,e,u,f,l,n){...})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+ml('account', 'xxxxxx');
+</script>
+```
+
+### Step 5: Set Up RSS-to-Email Automation
+
+This makes MailerLite automatically send emails when you publish new posts!
+
+1. In MailerLite, go to **Campaigns** → **RSS campaigns** (or **Automations** depending on your interface)
+2. Click **Create RSS campaign**
+3. Configure the settings:
+   - **RSS feed URL:** `https://linden-hub.github.io/Blog/rss.xml`
+   - **Frequency:** Choose how often to check (daily recommended)
+   - **Send when:** New items are found
+4. Design your email template:
+   - Add your blog name as the header
+   - Use RSS content blocks to pull in post title, content, and link
+   - Add a footer with unsubscribe link
+5. Select your subscriber group (all subscribers)
+6. Activate the automation
+
+**How it works:**
+- MailerLite checks your RSS feed periodically (e.g., daily)
+- When it finds a new post, it automatically creates and sends an email
+- Subscribers receive the email with your post content and a link to read more
+
+### Alternative: Manual Email Sending
+
+If you prefer more control, you can send emails manually:
+
+1. Write and publish your blog post
+2. In MailerLite, go to **Campaigns** → **Create campaign**
+3. Design an email with your post content
+4. Send to your subscribers
+
+This gives you full control over timing and content but requires more effort.
 
 ---
 
 ## Deploying to GitHub Pages
 
-Follow these steps to publish your blog online for free!
+### Step 1: Create a GitHub Repository
 
-### Step 1: Create a GitHub Account
+1. Go to [github.com](https://github.com) and sign in
+2. Click the **+** icon → **New repository**
+3. Name it (e.g., `Blog` or `my-blog`)
+4. Make sure it's **Public** (required for free GitHub Pages)
+5. Click **Create repository**
 
-1. Go to [github.com](https://github.com)
-2. Click "Sign Up" and create an account
-3. Verify your email address
+### Step 2: Upload Your Files
 
-### Step 2: Create a New Repository
+**Option A: Using GitHub's web interface**
 
-1. Click the "+" icon in the top right corner
-2. Select "New repository"
-3. Name it exactly: `yourusername.github.io` (replace `yourusername` with your GitHub username)
-4. Make sure it's set to "Public"
-5. Click "Create repository"
+1. On your repository page, click **uploading an existing file**
+2. Drag and drop all your blog files
+3. Click **Commit changes**
 
-### Step 3: Upload Your Files
+**Option B: Using Git command line**
 
-**Option A: Using GitHub's Web Interface (Easiest)**
+```bash
+cd /path/to/your/Blog
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+git push -u origin main
+```
 
-1. On your new repository page, click "uploading an existing file"
-2. Drag and drop ALL your blog files and folders
-3. Click "Commit changes"
-
-**Option B: Using GitHub Desktop**
-
-1. Download [GitHub Desktop](https://desktop.github.com/)
-2. Clone your repository
-3. Copy your blog files into the cloned folder
-4. Commit and push
-
-### Step 4: Enable GitHub Pages
+### Step 3: Enable GitHub Pages
 
 1. Go to your repository on GitHub
-2. Click "Settings" (tab at the top)
-3. Click "Pages" (in the left sidebar)
-4. Under "Source", select "Deploy from a branch"
-5. Select "main" branch and "/ (root)" folder
-6. Click "Save"
+2. Click **Settings** → **Pages**
+3. Under **Source**, select **Deploy from a branch**
+4. Select **main** branch and **/ (root)**
+5. Click **Save**
 
-### Step 5: Visit Your Site!
+### Step 4: Update Your URLs
 
-After a few minutes, your blog will be live at:
+After deploying, update the URLs in `rss.xml` to match your actual site:
 
-`https://yourusername.github.io`
+1. Open `rss.xml`
+2. Replace all instances of `https://linden-hub.github.io/Blog` with your actual URL
+3. Commit and push the changes
 
-### Updating Your Blog
+Your blog will be live at: `https://YOUR-USERNAME.github.io/YOUR-REPO`
 
-After initial setup, to add new posts:
+---
 
-1. Make changes locally (add posts, etc.)
-2. Upload/push the changed files to GitHub
-3. Changes go live automatically!
+## Complete Workflow: Publishing a Post with Email
+
+Here's the complete process for publishing a new blog post and having it emailed to subscribers:
+
+### 1. Write Your Post
+
+Create `posts/my-awesome-post.md`:
+
+```markdown
+# My Awesome Post
+
+This is my new blog post content...
+
+## Section One
+
+Some text here.
+
+## Section Two
+
+More content here.
+```
+
+### 2. Update posts.json
+
+Add to `posts/posts.json`:
+
+```json
+{
+    "slug": "my-awesome-post",
+    "title": "My Awesome Post",
+    "date": "2024-02-01",
+    "description": "A brief description of what this post is about."
+}
+```
+
+### 3. Update rss.xml
+
+Add new `<item>` at the top:
+
+```xml
+<item>
+    <title>My Awesome Post</title>
+    <link>https://linden-hub.github.io/Blog/post.html?slug=my-awesome-post</link>
+    <guid>https://linden-hub.github.io/Blog/post.html?slug=my-awesome-post</guid>
+    <pubDate>Thu, 01 Feb 2024 12:00:00 GMT</pubDate>
+    <description><![CDATA[
+        A brief description of what this post is about.
+        You can include <strong>HTML formatting</strong> here.
+    ]]></description>
+</item>
+```
+
+### 4. Push to GitHub
+
+```bash
+git add .
+git commit -m "Add new post: My Awesome Post"
+git push
+```
+
+### 5. Email Gets Sent Automatically!
+
+MailerLite will detect the new RSS item and send an email to your subscribers (usually within a few hours, depending on your settings).
 
 ---
 
@@ -318,144 +399,87 @@ After initial setup, to add new posts:
 
 ### Change the Blog Name
 
-1. Open `index.html`
-2. Find `<title>My Blog</title>` and change "My Blog"
-3. Find `<a href="index.html" class="logo">My Blog</a>` and change "My Blog"
-4. Do the same in `post.html`
+1. In `index.html` and `post.html`, find and change:
+   - `<title>My Blog</title>`
+   - `<a href="index.html" class="logo">My Blog</a>`
+2. In `rss.xml`, change `<title>My Blog</title>`
 
 ### Change Colors
 
-1. Open `css/style.css`
-2. Find the `:root` section at the top
-3. Change the color values:
+In `css/style.css`, modify the `:root` section:
 
 ```css
 :root {
-    --color-primary: #2563eb;       /* Main accent color */
+    --color-primary: #2563eb;       /* Accent color */
     --color-text: #1f2937;          /* Text color */
-    --color-background: #ffffff;    /* Background color */
-    /* ... etc */
+    --color-background: #ffffff;    /* Background */
 }
 ```
 
-**Color picker tip:** Search "color picker" on Google to find colors you like!
-
 ### Change the Welcome Message
 
-1. Open `index.html`
-2. Find the `<section class="hero">` section
-3. Edit the text inside
+In `index.html`, find the `<section class="hero">` and edit the text.
 
-### Change Fonts
+### Change the Newsletter Text
 
-1. Go to [fonts.google.com](https://fonts.google.com)
-2. Find a font you like
-3. Copy the embed code
-4. Replace the Google Fonts link in `index.html` and `post.html`
-5. Update the font name in `css/style.css` under `--font-family`
+In `index.html` and `post.html`, find the `newsletter-section` and edit:
+- The heading
+- The description text
 
 ---
 
 ## Project Structure
 
-Here's what each file and folder does:
-
 ```
 Blog/
-├── index.html          # Homepage - lists all your posts
-├── post.html           # Template for viewing individual posts
+├── index.html              # Homepage
+├── post.html               # Individual post template
+├── rss.xml                 # RSS feed (for newsletter automation)
 ├── css/
-│   └── style.css       # All the styling (colors, fonts, layout)
+│   └── style.css           # All styling
 ├── js/
-│   └── blog.js         # JavaScript that makes the blog work
+│   └── blog.js             # Blog functionality
 ├── posts/
-│   ├── posts.json      # List of all your posts (you edit this!)
-│   ├── welcome-to-my-blog.md        # Example post
-│   └── how-to-embed-youtube.md      # Example post
-├── images/             # Put your images here
-└── README.md           # This file!
+│   ├── posts.json          # List of posts
+│   └── *.md                # Your blog posts
+├── images/                 # Your images
+├── .nojekyll               # Tells GitHub not to use Jekyll
+└── README.md               # This file
 ```
 
-### How It Works (Simple Explanation)
+### How It Works
 
-1. When someone visits your homepage, JavaScript reads `posts.json` to get the list of posts
-2. It creates a card for each post and displays them
-3. When someone clicks a post, they go to `post.html?slug=post-name`
-4. JavaScript loads the matching `.md` file and converts it to HTML
-5. The post is displayed!
+1. **Homepage:** JavaScript reads `posts.json` and displays post cards
+2. **Post page:** JavaScript loads the markdown file and converts it to HTML
+3. **Newsletter:** Visitors sign up via the MailerLite form
+4. **RSS feed:** MailerLite reads this to detect new posts and send emails
 
 ---
 
 ## Markdown Guide
 
-Markdown is a simple way to format text. Here's a quick reference:
-
-### Headings
-
 ```markdown
-# Biggest Heading (H1)
-## Second Level (H2)
-### Third Level (H3)
-```
+# Heading 1
+## Heading 2
+### Heading 3
 
-### Text Formatting
-
-```markdown
 **bold text**
 *italic text*
-***bold and italic***
-~~strikethrough~~
-```
 
-### Links
+[Link text](https://example.com)
 
-```markdown
-[Click here](https://example.com)
-```
+![Image description](images/photo.jpg)
 
-### Images
+- Bullet point
+- Another point
 
-```markdown
-![Alt text](images/photo.jpg)
-```
+1. Numbered item
+2. Another item
 
-### Lists
+> Blockquote for quotes
 
-```markdown
-Bullet points:
-- Item one
-- Item two
-- Item three
+`inline code`
 
-Numbered list:
-1. First
-2. Second
-3. Third
-```
-
-### Blockquotes
-
-```markdown
-> This is a quote
-> It can span multiple lines
-```
-
-### Code
-
-```markdown
-Inline `code` looks like this.
-
-Code blocks:
-```
-function hello() {
-    console.log("Hello!");
-}
-```
-```
-
-### Horizontal Line
-
-```markdown
 ---
 ```
 
@@ -463,53 +487,46 @@ function hello() {
 
 ## Troubleshooting
 
-### "Loading posts..." never goes away
+### Newsletter form not showing
 
-- **If running locally:** Make sure you're using a local server (see [How to Run Locally](#how-to-run-locally))
-- **Check `posts.json`:** Make sure it's valid JSON (no missing commas, brackets, etc.)
+1. Make sure you replaced the placeholder with your MailerLite embed code
+2. Check that the script tags are included
+3. Test on the live site (some features don't work locally)
 
-### Post not showing up
+### Emails not being sent
 
-1. Check that the `slug` in `posts.json` exactly matches the filename (without `.md`)
-2. Make sure the `.md` file exists in the `posts/` folder
-3. Check for typos!
+1. Verify your RSS feed URL is correct in MailerLite
+2. Check that the RSS automation is active
+3. Make sure the `rss.xml` file has valid XML (no typos)
+4. MailerLite checks feeds periodically, so there may be a delay
 
-### Images not loading
+### RSS feed errors
 
-1. Make sure the image is in the `images/` folder
-2. Check that the path in your Markdown is correct
-3. Check for typos in the filename (it's case-sensitive!)
+1. Validate your XML at [validator.w3.org/feed](https://validator.w3.org/feed/)
+2. Common issues:
+   - Missing closing tags
+   - Special characters not escaped (use `&amp;` for &)
+   - Invalid date format
 
-### YouTube video not embedding
+### Posts not showing
 
-1. Make sure the URL is on its own line
-2. Leave blank lines before and after the URL
-3. Check that it's a valid YouTube URL
+1. Check that `slug` in `posts.json` matches the filename
+2. Verify the `.md` file exists in `posts/`
+3. Check for JSON syntax errors at [jsonlint.com](https://jsonlint.com)
 
-### Changes not showing on GitHub Pages
+### Changes not appearing on live site
 
-- Wait a few minutes - it can take up to 10 minutes to update
-- Try a hard refresh: `Cmd + Shift + R` (Mac) or `Ctrl + Shift + R` (Windows)
-- Check the repository to make sure your files were uploaded
-
-### JSON Syntax Errors
-
-Common issues in `posts.json`:
-- Missing comma between posts
-- Missing quotation marks around strings
-- Extra comma after the last post
-
-Use [jsonlint.com](https://jsonlint.com) to validate your JSON!
+1. Wait a few minutes for GitHub Pages to update
+2. Hard refresh: `Cmd + Shift + R` (Mac) or `Ctrl + Shift + R` (Windows)
+3. Check that changes were pushed to GitHub
 
 ---
 
 ## Need Help?
 
-If you get stuck:
-
-1. Re-read the relevant section of this guide
+1. Re-read the relevant section in this guide
 2. Check the [Troubleshooting](#troubleshooting) section
-3. Make sure you followed each step exactly
-4. Try searching your error message on Google
+3. Search your error message on Google
+4. For MailerLite issues, check their [help center](https://www.mailerlite.com/help)
 
-Good luck with your blog! 🎉
+Good luck with your blog and newsletter!

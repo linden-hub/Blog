@@ -14,6 +14,9 @@
 
     <meta name="description" content="A blog post">
 
+    <!-- RSS Feed link -->
+    <link rel="alternate" type="application/rss+xml" title="My Blog RSS Feed" href="rss.xml">
+
     <!-- Same styles as the homepage -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -63,6 +66,34 @@
                 <p class="loading">Loading post...</p>
             </div>
         </article>
+
+        <!--
+            ========================================
+            NEWSLETTER SIGNUP (appears after each post)
+            ========================================
+            Encourages readers to subscribe after reading a post.
+            Replace the placeholder with your MailerLite embed code.
+        -->
+        <section class="newsletter-section newsletter-post">
+            <div class="newsletter-box">
+                <h2>Enjoyed this post?</h2>
+                <p class="newsletter-description">
+                    Subscribe to get notified when I publish new content. No spam, unsubscribe anytime.
+                </p>
+
+                <!-- Replace this div with your MailerLite embed code -->
+                <div id="mailerlite-form-placeholder" class="form-placeholder">
+                    <p><strong>Newsletter form will appear here</strong></p>
+                    <p class="placeholder-instructions">
+                        Follow the MailerLite setup instructions in README.md to enable the signup form.
+                    </p>
+                </div>
+
+                <p class="rss-link">
+                    Prefer RSS? <a href="rss.xml">Subscribe via RSS feed</a>
+                </p>
+            </div>
+        </section>
     </main>
 
     <!--

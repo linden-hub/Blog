@@ -18,6 +18,12 @@
     -->
     <meta name="description" content="A personal blog about my thoughts and experiences">
 
+    <!--
+        RSS FEED LINK
+        This helps RSS readers and email services find your feed automatically
+    -->
+    <link rel="alternate" type="application/rss+xml" title="My Blog RSS Feed" href="rss.xml">
+
     <!-- Link to our CSS file for styling -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -85,6 +91,52 @@
             <div id="posts-container">
                 <!-- This loading message will be replaced by your actual posts -->
                 <p class="loading">Loading posts...</p>
+            </div>
+        </section>
+
+        <!--
+            ========================================
+            NEWSLETTER SIGNUP SECTION
+            ========================================
+            This form connects to MailerLite to collect email subscribers.
+
+            HOW TO SET THIS UP:
+            1. Create a free MailerLite account at mailerlite.com
+            2. Create a signup form in MailerLite
+            3. Get the embed code and replace the placeholder below
+
+            See README.md for detailed instructions!
+        -->
+        <section class="newsletter-section">
+            <div class="newsletter-box">
+                <h2>Subscribe to My Newsletter</h2>
+                <p class="newsletter-description">
+                    Get new posts delivered directly to your inbox. No spam, unsubscribe anytime.
+                </p>
+
+                <!--
+                    MAILERLITE FORM PLACEHOLDER
+                    ============================
+                    Replace this entire div with your MailerLite embed code.
+                    The embed code will look something like:
+
+                    <div class="ml-embedded" data-form="xxxxxx"></div>
+                    <script>
+                        (function(w,d,e,u,f,l,n){...})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+                        ml('account', 'xxxxxx');
+                    </script>
+                -->
+                <div id="mailerlite-form-placeholder" class="form-placeholder">
+                    <p><strong>Newsletter form will appear here</strong></p>
+                    <p class="placeholder-instructions">
+                        Follow the MailerLite setup instructions in README.md to enable the signup form.
+                    </p>
+                </div>
+
+                <!-- RSS Feed link for those who prefer RSS readers -->
+                <p class="rss-link">
+                    Prefer RSS? <a href="rss.xml">Subscribe via RSS feed</a>
+                </p>
             </div>
         </section>
     </main>
