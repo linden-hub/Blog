@@ -1,38 +1,19 @@
-# My First Post
+# post 1 (testing)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+Hello, Welcome to my blog! This is just a testing post to make sure everything is working. 
 
-## Section Heading
+## What to expect from me here
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Basically, I am going to be writing about anything that I want in this blog. Random thoughts, projects I'm working on, things that I've been doing, etc.
 
-Here's what a list looks like:
 
-- First item
-- Second item
-- Third item
+## Ignore the rest of this post please
 
-And a numbered list:
-
-1. Step one
-2. Step two
-3. Step three
-
-## Another Section
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
-
-> This is a blockquote. Great for highlighting important quotes or notes.
-
-### Subheading
-
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-
-Here's some `inline code` and a code block:
+> This is a blockquote. Bet you couldn't have guessed that!
 
 ```
 function example() {
-    console.log("Hello, world!");
+    console.log("I don't know how to code!");
 }
 ```
 
@@ -50,4 +31,4 @@ https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 ---
 
-That's it for this example post. Edit this file to create your own content!
+
