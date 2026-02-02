@@ -1,13 +1,25 @@
 /*
 ========================================
-CSS STYLES FOR YOUR BLOG
+DARK THEME BLOG STYLES
 ========================================
 
-This file controls how your blog looks.
-Feel free to change colors, sizes, and fonts!
+A sleek dark theme with terminal-style monospace typography.
+
+COLOR PALETTE:
+- Background:      #0f0f14 (deep charcoal)
+- Surface:         #1a1a24 (card backgrounds)
+- Elevated:        #252532 (hover states)
+- Primary text:    #e4e4eb (off-white)
+- Secondary text:  #8b8b9a (muted gray)
+- Accent:          #818cf8 (soft indigo)
+- Accent hover:    #a5b4fc (light indigo)
+- Borders:         #2d2d3d (subtle)
+
+TYPOGRAPHY:
+- Font: JetBrains Mono (terminal-style monospace)
 
 TABLE OF CONTENTS:
-1. CSS Variables (colors and fonts you can easily change)
+1. CSS Variables
 2. Reset & Base Styles
 3. Layout & Container
 4. Header & Navigation
@@ -18,30 +30,43 @@ TABLE OF CONTENTS:
 9. Images
 10. Newsletter Section
 11. Footer
-12. Responsive Design (mobile-friendly adjustments)
+12. Responsive Design
+13. Utility Classes
 */
 
 
 /* ========================================
    1. CSS VARIABLES
    ========================================
-   Change these values to customize your blog's look!
-   These are like settings that control the whole site.
 */
 :root {
-    /* COLORS - Change these to match your style! */
-    --color-primary: #2563eb;       /* Main accent color (links, buttons) - currently blue */
-    --color-primary-dark: #1d4ed8;  /* Darker version for hover effects */
-    --color-text: #1f2937;          /* Main text color - dark gray */
-    --color-text-light: #6b7280;    /* Secondary text (dates, descriptions) - lighter gray */
-    --color-background: #ffffff;    /* Page background - white */
-    --color-surface: #f9fafb;       /* Card backgrounds - very light gray */
-    --color-border: #e5e7eb;        /* Border color - light gray */
+    /* DARK THEME COLORS */
+    --color-background: #0f0f14;        /* Main background - deep charcoal */
+    --color-surface: #1a1a24;           /* Card/content backgrounds */
+    --color-surface-elevated: #252532;  /* Hover states, elevated elements */
+    --color-border: #2d2d3d;            /* Subtle borders */
+    --color-border-light: #3d3d4d;      /* Lighter borders for emphasis */
 
-    /* FONTS */
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* TEXT COLORS */
+    --color-text: #e4e4eb;              /* Primary text - off-white */
+    --color-text-muted: #8b8b9a;        /* Secondary text - muted gray */
+    --color-text-faint: #5c5c6d;        /* Tertiary text - very muted */
 
-    /* SPACING - Controls padding and margins */
+    /* ACCENT COLORS */
+    --color-primary: #818cf8;           /* Primary accent - soft indigo */
+    --color-primary-hover: #a5b4fc;     /* Lighter on hover */
+    --color-primary-muted: #6366f1;     /* Darker variant */
+    --color-primary-glow: rgba(129, 140, 248, 0.15);  /* Glow effect */
+
+    /* SEMANTIC COLORS */
+    --color-success: #4ade80;           /* Success green */
+    --color-error: #f87171;             /* Error red */
+    --color-warning: #fbbf24;           /* Warning yellow */
+
+    /* TERMINAL-STYLE FONT */
+    --font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+
+    /* SPACING */
     --spacing-xs: 0.5rem;   /* 8px */
     --spacing-sm: 1rem;     /* 16px */
     --spacing-md: 1.5rem;   /* 24px */
@@ -49,70 +74,85 @@ TABLE OF CONTENTS:
     --spacing-xl: 3rem;     /* 48px */
 
     /* SIZING */
-    --max-width: 800px;             /* Maximum width of content */
-    --border-radius: 8px;           /* Rounded corners */
+    --max-width: 800px;
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+
+    /* SHADOWS FOR DARK THEME */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px var(--color-primary-glow);
 }
 
 
 /* ========================================
    2. RESET & BASE STYLES
    ========================================
-   These remove default browser styles and set up basics
 */
-
-/* Remove default margins and use our font */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base styles for the whole page */
 html {
-    font-size: 16px;                        /* Base font size */
-    scroll-behavior: smooth;                /* Smooth scrolling when clicking links */
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: var(--font-family);
     color: var(--color-text);
     background-color: var(--color-background);
-    line-height: 1.6;                       /* Space between lines of text */
-    min-height: 100vh;                      /* Full height of screen */
+    line-height: 1.7;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Make images responsive (never wider than their container) */
+/* Improve text rendering for monospace */
+body, input, button, textarea {
+    font-feature-settings: "liga" 1, "calt" 1; /* Enable ligatures if available */
+}
+
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Link styles */
+/* Link styles for dark theme */
 a {
     color: var(--color-primary);
-    text-decoration: none;                  /* Remove underline */
-    transition: color 0.2s ease;            /* Smooth color change on hover */
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 a:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
+    color: var(--color-primary-hover);
+    text-decoration: none;
+    text-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+/* Selection styling */
+::selection {
+    background-color: var(--color-primary-muted);
+    color: var(--color-text);
 }
 
 
 /* ========================================
    3. LAYOUT & CONTAINER
    ========================================
-   The container centers content and limits width
 */
 .container {
     width: 100%;
     max-width: var(--max-width);
-    margin: 0 auto;                         /* Center the container */
-    padding: 0 var(--spacing-md);           /* Side padding */
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
 }
 
 
@@ -124,40 +164,56 @@ a:hover {
     background-color: var(--color-background);
     border-bottom: 1px solid var(--color-border);
     padding: var(--spacing-md) 0;
-    position: sticky;                       /* Header stays at top when scrolling */
+    position: sticky;
     top: 0;
-    z-index: 100;                          /* Keep header above other content */
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(15, 15, 20, 0.9);
 }
 
 .site-header .container {
     display: flex;
-    justify-content: space-between;         /* Logo on left, nav on right */
+    justify-content: space-between;
     align-items: center;
 }
 
-/* Blog logo/title in header */
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text);
     text-decoration: none;
+    letter-spacing: -0.02em;
 }
 
 .logo:hover {
     color: var(--color-primary);
     text-decoration: none;
+    text-shadow: 0 0 12px var(--color-primary-glow);
 }
 
-/* Navigation links */
 .main-nav {
     display: flex;
-    gap: var(--spacing-md);                 /* Space between nav links */
+    gap: var(--spacing-md);
 }
 
 .main-nav a {
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
     font-weight: 500;
+    font-size: 0.9rem;
     padding: var(--spacing-xs) 0;
+    position: relative;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.2s ease;
 }
 
 .main-nav a:hover,
@@ -166,11 +222,15 @@ a:hover {
     text-decoration: none;
 }
 
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
+}
+
 
 /* ========================================
    5. HERO SECTION
    ========================================
-   The welcome message at the top of the homepage
 */
 .hero {
     text-align: center;
@@ -180,59 +240,66 @@ a:hover {
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text);
+    letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-text-light);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 
 /* ========================================
    6. BLOG POST CARDS (Homepage)
    ========================================
-   These are the preview cards shown on the homepage
 */
 .posts-section {
     padding: var(--spacing-lg) 0;
 }
 
 .posts-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: var(--spacing-lg);
-    color: var(--color-text);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: lowercase;
 }
 
-/* Container for all post cards */
+.posts-section h2::before {
+    content: '// ';
+    color: var(--color-text-faint);
+}
+
 .posts-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);                 /* Space between cards */
+    gap: var(--spacing-md);
 }
 
-/* Individual post card */
 .post-card {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--spacing-lg);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-/* Hover effect on cards */
 .post-card:hover {
-    transform: translateY(-2px);            /* Slight lift */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-border-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
-/* Post title in card */
 .post-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin-bottom: var(--spacing-xs);
+    font-weight: 600;
 }
 
 .post-card h3 a {
@@ -241,52 +308,65 @@ a:hover {
 
 .post-card h3 a:hover {
     color: var(--color-primary);
-    text-decoration: none;
+    text-shadow: none;
 }
 
-/* Post date */
 .post-date {
-    font-size: 0.875rem;
-    color: var(--color-text-light);
+    font-size: 0.8rem;
+    color: var(--color-text-faint);
     margin-bottom: var(--spacing-sm);
+    font-weight: 400;
 }
 
-/* Post excerpt/description */
+.post-date::before {
+    content: '> ';
+    color: var(--color-primary-muted);
+}
+
 .post-excerpt {
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
     line-height: 1.7;
+    font-size: 0.95rem;
 }
 
-/* "Read more" link */
 .read-more {
     display: inline-block;
     margin-top: var(--spacing-sm);
     font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+}
+
+.read-more::after {
+    content: ' →';
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.read-more:hover::after {
+    transform: translateX(4px);
 }
 
 
 /* ========================================
    7. SINGLE POST PAGE
    ========================================
-   Styles for viewing a full blog post
 */
 .post-full {
     padding: var(--spacing-lg) 0 var(--spacing-xl);
 }
 
-/* Back link to homepage */
 .back-link {
     display: inline-block;
     margin-bottom: var(--spacing-md);
-    color: var(--color-text-light);
-    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
 }
 
 .back-link:hover {
     color: var(--color-primary);
 }
 
-/* Post header with title and date */
 .post-header {
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-lg);
@@ -294,85 +374,99 @@ a:hover {
 }
 
 .post-header h1 {
-    font-size: 2.25rem;
+    font-size: 2rem;
     line-height: 1.3;
     margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
 }
 
-/* Post content area - where Markdown is rendered */
+/* Post content styles */
 .post-content {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.8;
 }
 
-/* Headings within post content */
 .post-content h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-md);
+    color: var(--color-text);
 }
 
 .post-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--color-border);
+    color: var(--color-text);
 }
 
 .post-content h3 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
 }
 
-/* Paragraphs */
 .post-content p {
     margin-bottom: var(--spacing-md);
+    color: var(--color-text-muted);
 }
 
-/* Lists */
 .post-content ul,
 .post-content ol {
     margin-bottom: var(--spacing-md);
     padding-left: var(--spacing-lg);
+    color: var(--color-text-muted);
 }
 
 .post-content li {
     margin-bottom: var(--spacing-xs);
 }
 
-/* Blockquotes - for quotes or callouts */
-.post-content blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding-left: var(--spacing-md);
-    margin: var(--spacing-md) 0;
-    color: var(--color-text-light);
-    font-style: italic;
+.post-content li::marker {
+    color: var(--color-primary-muted);
 }
 
-/* Code blocks */
-.post-content code {
+/* Blockquotes */
+.post-content blockquote {
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    color: var(--color-text-muted);
+    font-style: italic;
     background-color: var(--color-surface);
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
+    padding: var(--spacing-md);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Code styling */
+.post-content code {
+    background-color: var(--color-surface-elevated);
+    padding: 0.2em 0.5em;
+    border-radius: var(--border-radius-sm);
     font-size: 0.9em;
-    font-family: 'Monaco', 'Consolas', monospace;
+    color: var(--color-primary-hover);
+    border: 1px solid var(--color-border);
 }
 
 .post-content pre {
-    background-color: #1f2937;
-    color: #f9fafb;
+    background-color: var(--color-surface);
+    color: var(--color-text);
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
-    overflow-x: auto;                       /* Horizontal scroll for long code */
+    overflow-x: auto;
     margin-bottom: var(--spacing-md);
+    border: 1px solid var(--color-border);
 }
 
 .post-content pre code {
     background: none;
     padding: 0;
     color: inherit;
+    border: none;
+    font-size: 0.9rem;
 }
 
 /* Horizontal rule */
@@ -382,20 +476,30 @@ a:hover {
     margin: var(--spacing-lg) 0;
 }
 
+/* Strong and emphasis */
+.post-content strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.post-content em {
+    color: var(--color-text-muted);
+}
+
 
 /* ========================================
    8. YOUTUBE EMBEDS
    ========================================
-   Makes YouTube videos responsive (proper sizing on all screens)
 */
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%;                 /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     margin: var(--spacing-md) 0;
     background-color: var(--color-surface);
     border-radius: var(--border-radius);
     overflow: hidden;
+    border: 1px solid var(--color-border);
 }
 
 .video-container iframe {
@@ -411,20 +515,19 @@ a:hover {
 /* ========================================
    9. IMAGES
    ========================================
-   Styles for images in blog posts
 */
 .post-content img {
     border-radius: var(--border-radius);
     margin: var(--spacing-md) 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
 }
 
-/* Image captions (if you add them) */
 .post-content img + em {
     display: block;
     text-align: center;
-    color: var(--color-text-light);
-    font-size: 0.875rem;
+    color: var(--color-text-faint);
+    font-size: 0.85rem;
     margin-top: calc(-1 * var(--spacing-sm));
     margin-bottom: var(--spacing-md);
 }
@@ -433,7 +536,6 @@ a:hover {
 /* ========================================
    10. NEWSLETTER SECTION
    ========================================
-   Styles for the email signup form
 */
 .newsletter-section {
     padding: var(--spacing-xl) 0;
@@ -441,64 +543,57 @@ a:hover {
     margin-top: var(--spacing-lg);
 }
 
-/* Newsletter box styling */
 .newsletter-box {
-    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--spacing-xl);
     text-align: center;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle glow effect */
+.newsletter-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .newsletter-box h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--color-text);
     margin-bottom: var(--spacing-sm);
+    position: relative;
 }
 
 .newsletter-description {
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
     margin-bottom: var(--spacing-lg);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    position: relative;
 }
 
-/* Placeholder styles (shown before MailerLite is set up) */
-.form-placeholder {
-    background-color: var(--color-background);
-    border: 2px dashed var(--color-border);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-md);
-}
-
-.form-placeholder p {
-    margin: 0;
-    color: var(--color-text-light);
-}
-
-.placeholder-instructions {
-    font-size: 0.875rem;
-    margin-top: var(--spacing-xs) !important;
-}
-
-/* RSS link at bottom of newsletter section */
 .rss-link {
-    font-size: 0.875rem;
-    color: var(--color-text-light);
+    font-size: 0.8rem;
+    color: var(--color-text-faint);
     margin-top: var(--spacing-md);
+    position: relative;
 }
 
-/* Newsletter section when it appears after a post */
 .newsletter-post {
     margin-top: var(--spacing-xl);
 }
 
-/*
-   MailerLite Form Styles
-   These style the MailerLite embedded form to match the blog design
-*/
+/* MailerLite Form Styles - Dark Theme */
 .ml-form-embedContainer {
     box-sizing: border-box;
     display: table;
@@ -532,27 +627,27 @@ a:hover {
 }
 
 .ml-form-fieldRow input[type="email"] {
-    background-color: #ffffff;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    font-family: var(--font-family);
-    font-size: 1rem;
+    background-color: var(--color-background) !important;
+    color: var(--color-text) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--border-radius) !important;
+    font-family: var(--font-family) !important;
+    font-size: 0.95rem !important;
     line-height: 1.5;
-    padding: 12px 16px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ml-form-fieldRow input[type="email"]:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
 }
 
 .ml-form-fieldRow input[type="email"]::placeholder {
-    color: var(--color-text-light);
+    color: var(--color-text-faint) !important;
 }
 
 .ml-form-embedSubmit {
@@ -563,20 +658,21 @@ a:hover {
     background-color: var(--color-primary) !important;
     border: none !important;
     border-radius: var(--border-radius) !important;
-    color: #ffffff !important;
+    color: #0f0f14 !important;
     cursor: pointer;
     font-family: var(--font-family) !important;
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
     font-weight: 600 !important;
     line-height: 1.5 !important;
     padding: 12px 24px !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .ml-form-embedSubmit button:hover {
-    background-color: var(--color-primary-dark) !important;
+    background-color: var(--color-primary-hover) !important;
+    box-shadow: var(--shadow-glow) !important;
 }
 
 .ml-form-embedSubmitLoad {
@@ -592,8 +688,8 @@ a:hover {
     height: 14px;
     margin: 1px;
     border-radius: 50%;
-    border: 3px solid #fff;
-    border-color: #ffffff #ffffff #ffffff transparent;
+    border: 3px solid var(--color-background);
+    border-color: var(--color-background) var(--color-background) var(--color-background) transparent;
     animation: ml-form-embedSubmitLoad 1.2s linear infinite;
 }
 
@@ -607,13 +703,13 @@ a:hover {
 }
 
 .ml-form-successContent h4 {
-    color: var(--color-text);
-    font-size: 1.25rem;
+    color: var(--color-success) !important;
+    font-size: 1.1rem;
     margin-bottom: var(--spacing-xs);
 }
 
 .ml-form-successContent p {
-    color: var(--color-text-light);
+    color: var(--color-text-muted) !important;
     margin: 0;
 }
 
@@ -634,7 +730,7 @@ a:hover {
    ========================================
 */
 .site-footer {
-    margin-top: auto;                       /* Push footer to bottom */
+    margin-top: auto;
     background-color: var(--color-surface);
     border-top: 1px solid var(--color-border);
     padding: var(--spacing-lg) 0;
@@ -642,8 +738,8 @@ a:hover {
 }
 
 .site-footer p {
-    color: var(--color-text-light);
-    font-size: 0.875rem;
+    color: var(--color-text-faint);
+    font-size: 0.85rem;
 }
 
 .social-links {
@@ -654,36 +750,36 @@ a:hover {
 }
 
 .social-links a {
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
+}
+
+.social-links a:hover {
+    color: var(--color-primary);
 }
 
 
 /* ========================================
    12. RESPONSIVE DESIGN
    ========================================
-   Adjustments for different screen sizes
 */
-
-/* Tablets and smaller (768px and below) */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .post-header h1 {
         font-size: 1.75rem;
     }
 
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .post-header h1 {
+        font-size: 1.5rem;
+    }
+
     .post-content {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 }
 
-/* Mobile phones (480px and below) */
 @media (max-width: 480px) {
     .site-header .container {
         flex-direction: column;
@@ -699,7 +795,7 @@ a:hover {
     }
 
     .hero h1 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .post-card {
@@ -710,44 +806,68 @@ a:hover {
         padding: 0 var(--spacing-sm);
     }
 
-    /* Newsletter section on mobile */
     .newsletter-box {
         padding: var(--spacing-lg);
     }
 
     .newsletter-box h2 {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 
     .newsletter-description {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
 
 
 /* ========================================
-   UTILITY CLASSES
+   13. UTILITY CLASSES
    ========================================
-   Helper classes you can use anywhere
 */
-
-/* Loading state */
 .loading {
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
     text-align: center;
     padding: var(--spacing-lg);
 }
 
-/* Error state */
+.loading::before {
+    content: '> ';
+    color: var(--color-primary);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
 .error {
-    color: #dc2626;
+    color: var(--color-error);
     text-align: center;
     padding: var(--spacing-lg);
-    background-color: #fef2f2;
+    background-color: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.3);
     border-radius: var(--border-radius);
 }
 
-/* Hidden element */
 .hidden {
     display: none;
+}
+
+/* Placeholder styles (if MailerLite isn't set up) */
+.form-placeholder {
+    background-color: var(--color-background);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.form-placeholder p {
+    margin: 0;
+    color: var(--color-text-faint);
+}
+
+.placeholder-instructions {
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs) !important;
 }
