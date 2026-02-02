@@ -13,7 +13,6 @@
     (right after the opening <channel> section).
 
     IMPORTANT: The link URLs must be your actual GitHub Pages URL!
-    Replace "YOUR-USERNAME" with your GitHub username.
 -->
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
@@ -23,19 +22,9 @@
         -->
         <title>My Blog</title>
         <description>Thoughts, stories, and ideas worth sharing</description>
-
-        <!--
-            IMPORTANT: Change this to your actual blog URL!
-            Format: https://YOUR-USERNAME.github.io/Blog
-            Example: https://linden-hub.github.io/Blog
-        -->
         <link>https://linden-hub.github.io/Blog</link>
         <language>en-us</language>
 
-        <!--
-            This tells RSS readers where to find this feed
-            IMPORTANT: Update with your actual URL!
-        -->
         <atom:link href="https://linden-hub.github.io/Blog/rss.xml" rel="self" type="application/rss+xml"/>
 
         <!--
@@ -54,7 +43,6 @@
                 <description><![CDATA[
                     Your post description or excerpt here.
                     This is what appears in the email preview.
-                    You can include basic HTML like <strong>bold</strong> and <em>italic</em>.
                 ]]></description>
             </item>
 
@@ -64,28 +52,6 @@
             - Tue, 20 Feb 2024 09:30:00 GMT
             - Wed, 05 Mar 2024 18:00:00 GMT
         -->
-
-        <!-- POST 2: How to Embed YouTube Videos (newest first) -->
-        <item>
-            <title>How to Embed YouTube Videos in Your Posts</title>
-            <link>https://linden-hub.github.io/Blog/post.html?slug=how-to-embed-youtube-videos</link>
-            <guid>https://linden-hub.github.io/Blog/post.html?slug=how-to-embed-youtube-videos</guid>
-            <pubDate>Sat, 20 Jan 2024 12:00:00 GMT</pubDate>
-            <description><![CDATA[
-                A quick tutorial showing how easy it is to add YouTube videos to your blog posts. Just paste the link and it automatically becomes an embedded video player!
-            ]]></description>
-        </item>
-
-        <!-- POST 1: Welcome to My Blog -->
-        <item>
-            <title>Welcome to My Blog!</title>
-            <link>https://linden-hub.github.io/Blog/post.html?slug=welcome-to-my-blog</link>
-            <guid>https://linden-hub.github.io/Blog/post.html?slug=welcome-to-my-blog</guid>
-            <pubDate>Mon, 15 Jan 2024 12:00:00 GMT</pubDate>
-            <description><![CDATA[
-                Hello and welcome! This is my first blog post where I introduce myself and share what you can expect from this blog. I'll be covering personal stories, interesting things I learn, tutorials, and my thoughts on various topics.
-            ]]></description>
-        </item>
 
     </channel>
 </rss>
