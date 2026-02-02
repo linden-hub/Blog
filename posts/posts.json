@@ -1,0 +1,16 @@
+{
+    "posts": [
+        {
+            "slug": "welcome-to-my-blog",
+            "title": "Welcome to My Blog!",
+            "date": "2024-01-15",
+            "description": "Hello and welcome! This is my first blog post where I introduce myself and share what you can expect from this blog."
+        },
+        {
+            "slug": "how-to-embed-youtube-videos",
+            "title": "How to Embed YouTube Videos in Your Posts",
+            "date": "2024-01-20",
+            "description": "A quick tutorial showing how easy it is to add YouTube videos to your blog posts. Just paste the link!"
+        }
+    ]
+}

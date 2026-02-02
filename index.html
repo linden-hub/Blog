@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        META TAGS: Tell browsers how to display and understand your site
+        - charset: Supports special characters and emojis
+        - viewport: Makes the site work properly on mobile phones
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This appears in the browser tab -->
+    <title>My Blog</title>
+
+    <!--
+        DESCRIPTION: Shows up when you share your site on social media or Google
+        Change this to describe your blog!
+    -->
+    <meta name="description" content="A personal blog about my thoughts and experiences">
+
+    <!-- Link to our CSS file for styling -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--
+        GOOGLE FONTS: This loads a nice, modern font called "Inter"
+        You can change this to any font from fonts.google.com
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--
+        ========================================
+        HEADER SECTION
+        Contains your blog title and navigation
+        ========================================
+    -->
+    <header class="site-header">
+        <div class="container">
+            <!--
+                CUSTOMIZE: Change "My Blog" to your blog's name
+                The link takes visitors back to the homepage when clicked
+            -->
+            <a href="index.html" class="logo">My Blog</a>
+
+            <!--
+                NAVIGATION LINKS
+                Add more links here if you want (About page, Contact, etc.)
+                Example: <a href="about.html">About</a>
+            -->
+            <nav class="main-nav">
+                <a href="index.html" class="active">Home</a>
+                <!-- Uncomment and create these pages if you want them:
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                -->
+            </nav>
+        </div>
+    </header>
+
+    <!--
+        ========================================
+        MAIN CONTENT AREA
+        This is where your blog posts will appear
+        ========================================
+    -->
+    <main class="container">
+        <!--
+            HERO SECTION: The welcome message at the top
+            CUSTOMIZE: Change the text to introduce yourself!
+        -->
+        <section class="hero">
+            <h1>Welcome to My Blog</h1>
+            <p class="hero-subtitle">Thoughts, stories, and ideas worth sharing</p>
+        </section>
+
+        <!--
+            BLOG POSTS CONTAINER
+            JavaScript will automatically fill this with your posts
+            The "loading" message shows while posts are being fetched
+        -->
+        <section class="posts-section">
+            <h2>Latest Posts</h2>
+            <div id="posts-container">
+                <!-- This loading message will be replaced by your actual posts -->
+                <p class="loading">Loading posts...</p>
+            </div>
+        </section>
+    </main>
+
+    <!--
+        ========================================
+        FOOTER SECTION
+        Appears at the bottom of every page
+        ========================================
+    -->
+    <footer class="site-footer">
+        <div class="container">
+            <!--
+                CUSTOMIZE: Add your name and any links you want
+                The &copy; symbol shows as © (copyright symbol)
+            -->
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+            <!--
+                Optional: Add social media links
+                <div class="social-links">
+                    <a href="https://twitter.com/yourusername">Twitter</a>
+                    <a href="https://github.com/yourusername">GitHub</a>
+                </div>
+            -->
+        </div>
+    </footer>
+
+    <!--
+        ========================================
+        JAVASCRIPT FILES
+        These must be at the bottom so the page loads first
+        ========================================
+    -->
+
+    <!--
+        MARKED.JS: A library that converts Markdown to HTML
+        This is what lets you write posts in easy Markdown format
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Our custom JavaScript that runs the blog -->
+    <script src="js/blog.js"></script>
+
+    <!--
+        This small script tells blog.js to load posts on the homepage
+        "displayPostsList" is a function defined in blog.js
+    -->
+    <script>
+        // When the page finishes loading, display all blog posts
+        document.addEventListener('DOMContentLoaded', function() {
+            displayPostsList();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        This page displays a single blog post
+        The content is loaded dynamically based on the URL
+        Example: post.html?slug=my-first-post loads posts/my-first-post.md
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This will be updated by JavaScript to show the post title -->
+    <title>Loading... | My Blog</title>
+
+    <meta name="description" content="A blog post">
+
+    <!-- Same styles as the homepage -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--
+        ========================================
+        HEADER (same as homepage)
+        ========================================
+    -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">My Blog</a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!--
+        ========================================
+        MAIN CONTENT AREA
+        The blog post will be inserted here
+        ========================================
+    -->
+    <main class="container">
+        <article class="post-full">
+            <!--
+                POST HEADER: Title and date
+                These are filled in by JavaScript
+            -->
+            <header class="post-header">
+                <a href="index.html" class="back-link">&larr; Back to all posts</a>
+                <h1 id="post-title">Loading...</h1>
+                <p class="post-date" id="post-date"></p>
+            </header>
+
+            <!--
+                POST CONTENT: The actual blog post content
+                JavaScript will insert the converted Markdown here
+            -->
+            <div id="post-content" class="post-content">
+                <p class="loading">Loading post...</p>
+            </div>
+        </article>
+    </main>
+
+    <!--
+        ========================================
+        FOOTER (same as homepage)
+        ========================================
+    -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--
+        ========================================
+        JAVASCRIPT
+        ========================================
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/blog.js"></script>
+
+    <script>
+        // When the page loads, display the specific blog post
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySinglePost();
+        });
+    </script>
+</body>
+</html>
