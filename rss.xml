@@ -53,5 +53,15 @@
             - Wed, 05 Mar 2024 18:00:00 GMT
         -->
 
+        <item>
+            <title>My First Post</title>
+            <link>https://linden-hub.github.io/Blog/post.html?slug=my-first-post</link>
+            <guid>https://linden-hub.github.io/Blog/post.html?slug=my-first-post</guid>
+            <pubDate>Sat, 01 Feb 2025 12:00:00 GMT</pubDate>
+            <description><![CDATA[
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a placeholder post you can edit.
+            ]]></description>
+        </item>
+
     </channel>
 </rss>

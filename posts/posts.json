@@ -1,3 +1,10 @@
 {
-    "posts": []
+    "posts": [
+        {
+            "slug": "my-first-post",
+            "title": "My First Post",
+            "date": "2025-02-01",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a placeholder post you can edit."
+        }
+    ]
 }
