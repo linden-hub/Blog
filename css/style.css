@@ -496,24 +496,137 @@ a:hover {
 }
 
 /*
-   MailerLite form overrides (optional)
-   These help the MailerLite form match your blog's design.
-   Uncomment and adjust as needed after embedding the form.
+   MailerLite Form Styles
+   These style the MailerLite embedded form to match the blog design
 */
-/*
-.ml-embedded {
-    font-family: var(--font-family) !important;
+.ml-form-embedContainer {
+    box-sizing: border-box;
+    display: table;
+    margin: 0 auto;
+    position: static;
+    width: 100% !important;
 }
 
-.ml-embedded .ml-form-embedContent {
-    padding: 0 !important;
+.ml-form-embedWrapper {
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    display: inline-block !important;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    max-width: 400px;
+    width: 100%;
 }
 
-.ml-embedded .ml-form-embedSubmit button {
+.ml-form-embedBody {
+    padding: 0;
+}
+
+.ml-form-align-center {
+    text-align: center;
+}
+
+.ml-form-fieldRow {
+    margin-bottom: var(--spacing-sm);
+}
+
+.ml-form-fieldRow input[type="email"] {
+    background-color: #ffffff;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 12px 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.ml-form-fieldRow input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.ml-form-fieldRow input[type="email"]::placeholder {
+    color: var(--color-text-light);
+}
+
+.ml-form-embedSubmit {
+    margin-top: var(--spacing-sm);
+}
+
+.ml-form-embedSubmit button {
     background-color: var(--color-primary) !important;
+    border: none !important;
     border-radius: var(--border-radius) !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    font-family: var(--font-family) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    padding: 12px 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: background-color 0.2s ease;
 }
-*/
+
+.ml-form-embedSubmit button:hover {
+    background-color: var(--color-primary-dark) !important;
+}
+
+.ml-form-embedSubmitLoad {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.ml-form-embedSubmitLoad:after {
+    content: " ";
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    border-color: #ffffff #ffffff #ffffff transparent;
+    animation: ml-form-embedSubmitLoad 1.2s linear infinite;
+}
+
+@keyframes ml-form-embedSubmitLoad {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ml-form-successBody {
+    padding: var(--spacing-md);
+}
+
+.ml-form-successContent h4 {
+    color: var(--color-text);
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.ml-form-successContent p {
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
 
 
 /* ========================================

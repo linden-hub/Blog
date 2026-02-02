@@ -114,24 +114,50 @@
                     Get new posts delivered directly to your inbox. No spam, unsubscribe anytime.
                 </p>
 
-                <!--
-                    MAILERLITE FORM PLACEHOLDER
-                    ============================
-                    Replace this entire div with your MailerLite embed code.
-                    The embed code will look something like:
-
-                    <div class="ml-embedded" data-form="xxxxxx"></div>
-                    <script>
-                        (function(w,d,e,u,f,l,n){...})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-                        ml('account', 'xxxxxx');
-                    </script>
-                -->
-                <div id="mailerlite-form-placeholder" class="form-placeholder">
-                    <p><strong>Newsletter form will appear here</strong></p>
-                    <p class="placeholder-instructions">
-                        Follow the MailerLite setup instructions in README.md to enable the signup form.
-                    </p>
+                <!-- MailerLite Embedded Form -->
+                <div id="mlb2-36553031" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-36553031">
+                    <div class="ml-form-align-center">
+                        <div class="ml-form-embedWrapper embedForm">
+                            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2081464/forms/178265248457820055/subscribe" data-code="" method="post" target="_blank">
+                                    <div class="ml-form-formContent">
+                                        <div class="ml-form-fieldRow ml-last-item">
+                                            <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Enter your email" autocomplete="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="ml-submit" value="1">
+                                    <div class="ml-form-embedSubmit">
+                                        <button type="submit" class="primary">Subscribe</button>
+                                        <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                            <div class="ml-form-embedSubmitLoad"></div>
+                                            <span class="sr-only">Loading...</span>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="anticsrf" value="true">
+                                </form>
+                            </div>
+                            <div class="ml-form-successBody row-success" style="display: none">
+                                <div class="ml-form-successContent">
+                                    <h4>Thank you!</h4>
+                                    <p>You have successfully joined the subscriber list.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <script>
+                    function ml_webform_success_36553031() {
+                        var $ = ml_jQuery || jQuery;
+                        $('.ml-subscribe-form-36553031 .row-success').show();
+                        $('.ml-subscribe-form-36553031 .row-form').hide();
+                    }
+                </script>
+                <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+                <script>
+                    fetch("https://assets.mailerlite.com/jsonp/2081464/forms/178265248457820055/takel")
+                </script>
 
                 <!-- RSS Feed link for those who prefer RSS readers -->
                 <p class="rss-link">
