@@ -2,9 +2,9 @@
     "posts": [
         {
             "slug": "my-first-post",
-            "title": "My First Post",
+            "title": "What to Expect & Testing",
             "date": "2025-02-01",
-            "description": "Testing post for functionality"
+            "description": "Here's what to expect from this blog :)"
         }
     ]
 }

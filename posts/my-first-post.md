@@ -1,13 +1,20 @@
 # post 1 (testing)
 
-Hello, Welcome to my blog! This is just a testing post to make sure everything is working. 
+Hello, Welcome to my blog! 
 
 ## What to expect from me here
 
 Basically, I am going to be writing about anything that I want in this blog. Random thoughts, projects I'm working on, things that I've been doing, etc.
 
 
-## Ignore the rest of this post please
+
+
+
+
+
+
+
+## Ignore the rest of this post
 
 > This is a blockquote. Bet you couldn't have guessed that!
 
