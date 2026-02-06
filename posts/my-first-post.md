@@ -1,41 +1,4 @@
-# post 1 (testing)
-
-Hello, Welcome to my blog! 
-
 ## What to expect from me here
 
-Basically, I am going to be writing about anything that I want in this blog. Random thoughts, projects I'm working on, things that I've been doing, etc.
-
-
-
-
-
-
-
-
-
-## Ignore the rest of this post
-
-> This is a blockquote. Bet you couldn't have guessed that!
-
-```
-function example() {
-    console.log("I don't know how to code!");
-}
-```
-
-## Adding Images
-
-To add an image, put it in the `images/` folder and use:
-
-![Description of image](images/your-image.jpg)
-
-## Embedding YouTube Videos
-
-Just paste a YouTube URL on its own line:
-
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
-
----
-
+Basically, I will be writing about whatever is up with me. Random thoughts, projects I'm working on, things that I've been doing, etc. Don't hesitate to send me an email or a text about something you read here! The idea is to update friends/family about my life but also to stir up some conversation. So, thank you for reading and hope to talk to you soon.  
 
