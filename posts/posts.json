@@ -1,6 +1,12 @@
 {
     "posts": [
         {
+            "slug": "claude-code",
+            "title": "Claude Code: AI in the Terminal",
+            "date": "2025-02-06",
+            "description": "My experience using Anthropic's CLI tool for coding with Claude."
+        },
+        {
             "slug": "my-first-post",
             "title": "What to Expect & Testing",
             "date": "2025-02-01",
