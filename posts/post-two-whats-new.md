@@ -1,6 +1,4 @@
 
-# What’s New?
-
 There’s a lot of stuff that’s new in my life and there’s even more that’s been on my mind recently. So, this post is going to be on the longer side. Make sure to reply to this email with any thoughts you have! Here is a list of what’s in this post in chronological order: 
 
 - ICE & Minneapolis 
