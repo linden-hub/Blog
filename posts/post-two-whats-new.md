@@ -19,6 +19,7 @@ I’ve been starting a few new things recently and gaining some new interests. M
 
 Another place I have been putting my time is in building another business called Morpho. The idea behind it is that I will automate marketing small businesses and early stage founders. I’ve been using an AI service called Claude Code (by the company Anthropic) to build it. I just launched the site and if you are interested you can check it out here: 
 
+https://morpho-five.vercel.app
 
 Other than that, I’m still listening to a lot of music, going climbing, going to class, and having lots of fun. 
 
