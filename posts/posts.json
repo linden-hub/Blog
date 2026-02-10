@@ -4,8 +4,14 @@
         {
             "slug": "my-first-post",
             "title": "What to Expect & Testing",
-            "date": "2025-02-01",
+            "date": "2026-02-01",
             "description": "Here's what to expect from this blog :)"
+        },
+         {
+            "slug": "post-two-whats-new",
+            "title": "What's New?",
+            "date": "2026-2-10",
+            "description": "What's new with me? Whats new with you?"
         }
     ]
 }
